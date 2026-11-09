@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fénix Cafés · Da nossa família para a sua</title>
+<meta name="description" content="Cinco blends de torrefação portuguesa. Classic, Speciale, Gold, Supreme e Euphoria, em 1 kg, 3 kg e 5 kg. Portes grátis a partir de 3 kg para Portugal Continental.">
+<meta name="theme-color" content="#120C0A">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23120C0A'/><text x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' text-anchor='middle' fill='%23D9B766'>F</text></svg>">
+<link rel="preload" href="assets/fonts/kaushan-script-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/poppins-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="scrollcraft.css">
+<style>
+@font-face{font-family:"Poppins";font-weight:300;font-style:normal;font-display:swap;src:url(assets/fonts/poppins-latin-300-normal.woff2) format("woff2")}
+@font-face{font-family:"Poppins";font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/poppins-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Poppins";font-weight:500;font-style:normal;font-display:swap;src:url(assets/fonts/poppins-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Poppins";font-weight:600;font-style:normal;font-display:swap;src:url(assets/fonts/poppins-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Kaushan Script";font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/kaushan-script-latin-400-normal.woff2) format("woff2")}
+
+:root{
+  --sc-canvas:#120C0A;
+  --sc-surface:#1B1310;
+  --sc-ink:#F4EDE2;
+  --sc-ink-soft:#C2B3A0;
+  --sc-accent:#D9B766;
+  --sc-accent-ink:#1A120B;
+  --sc-font-display:"Poppins",system-ui,sans-serif;
+  --sc-font-text:"Poppins",system-ui,sans-serif;
+  --script:"Kaushan Script","Brush Script MT",cursive;
+  --sc-shadow-color:20 40% 3%;
+  --bar-h:4rem;
+}
+body{font-weight:400;line-height:1.6;letter-spacing:0}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:fixed;left:1rem;top:-4rem;z-index:100;background:var(--sc-accent);color:var(--sc-accent-ink);padding:.6rem 1rem;border-radius:var(--sc-r-md);font-weight:500;text-decoration:none;transition:top 160ms var(--sc-ease-out)}
+.skip:focus{top:1rem}
+button{cursor:pointer}
+
+/* ------------------------------------------------------------- bar ---- */
+.bar{position:fixed;inset:0 0 auto 0;height:var(--bar-h);z-index:var(--sc-z-chrome);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1.5rem;padding-inline:var(--sc-gutter);
+  background:linear-gradient(to bottom,rgb(14 9 7 / .9),rgb(14 9 7 / .55) 70%,transparent);color:var(--sc-ink);transition:color 200ms var(--sc-ease-out)}
+.bar.on-light{background:linear-gradient(to bottom,rgb(254 254 254 / .95),rgb(254 254 254 / .7) 70%,transparent);color:#1D1410}
+.mark{margin:0;font-weight:600;font-size:.95rem;letter-spacing:.24em;line-height:1}
+.mark a{text-decoration:none;display:inline-flex;align-items:baseline;gap:.6em}
+.mark small{font-size:.62em;font-weight:400;letter-spacing:.3em;opacity:.8}
+.idx{list-style:none;margin:0;padding:0;display:flex;justify-content:center;gap:clamp(.9rem,2.4vw,2.2rem)}
+.idx a{display:inline-flex;align-items:center;gap:.55rem;font-size:.82rem;font-weight:400;text-decoration:none;opacity:.72;padding:.5rem .15rem;border-bottom:1px solid transparent;transition:opacity 160ms var(--sc-ease-out),border-color 160ms var(--sc-ease-out)}
+.idx a i{width:.6rem;height:.6rem;border-radius:50%;background:var(--sw);box-shadow:0 0 0 1px rgb(255 255 255 / .35)}
+.idx a[aria-current="true"]{opacity:1;border-bottom-color:currentColor}
+@media (hover:hover) and (pointer:fine){.idx a:hover{opacity:1}}
+.tbtn{display:inline-flex;align-items:center;gap:.6rem;background:transparent;border:1px solid color-mix(in oklab,currentColor 35%,transparent);color:inherit;border-radius:var(--sc-r-md);padding:.5rem .85rem;font-size:.82rem;font-weight:500;line-height:1;min-height:2.5rem;transition:transform 120ms var(--sc-ease-out),border-color 160ms var(--sc-ease-out),background 160ms var(--sc-ease-out)}
+.tbtn:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.tbtn:hover{border-color:currentColor}}
+.tbtn__n{min-width:1.3rem;height:1.3rem;border-radius:999px;background:var(--sc-accent);color:var(--sc-accent-ink);font-size:.72rem;font-weight:600;display:inline-grid;place-items:center;padding-inline:.3rem}
+.tbtn__n[hidden]{display:none}
+.tbtn.bump{animation:bump 360ms var(--sc-ease-out)}
+@keyframes bump{0%{transform:scale(1)}35%{transform:scale(1.07)}100%{transform:scale(1)}}
+
+/* -------------------------------------------------------- the gallery -- */
+.gallery [data-sc-pan]{height:100%}
+.obj{--acc:#D9B766;--g:#1a1210;--g2:#3a2a22;position:relative;flex:0 0 100vw;width:100vw;height:100%;overflow:clip;background:var(--g);color:var(--sc-ink);isolation:isolate}
+.obj--classic{--g:#3A130F;--g2:#8A2D22}
+.obj--speciale{--g:#0A261F;--g2:#16604A}
+.obj--gold{--g:#1E1709;--g2:#6A5016}
+.obj--supreme{--g:#0A1431;--g2:#1F3F86}
+.obj--euphoria{--g:#0B0A0C;--g2:#2A2128}
+.obj + .obj{box-shadow:inset 1px 0 0 color-mix(in oklab,var(--acc) 22%,transparent)}
+.obj__ground{position:absolute;inset:0;z-index:0;
+  background:radial-gradient(58% 72% at 27% 54%,var(--g2) 0%,transparent 74%),linear-gradient(to bottom,transparent 62%,rgb(0 0 0 / .34))}
+.obj__ground::after{content:"";position:absolute;left:0;right:0;top:91.5%;height:1px;background:color-mix(in oklab,var(--acc) 24%,transparent)}
+.obj__ghost{position:absolute;z-index:1;left:-1%;top:calc(var(--bar-h) + 3svh);font-family:var(--script);font-size:clamp(8rem,23vw,26rem);line-height:1;white-space:nowrap;color:color-mix(in oklab,var(--acc) 8%,transparent);pointer-events:none;user-select:none;transform:translate3d(calc(var(--d,0) * 13vw),0,0);-webkit-mask-image:linear-gradient(to right,#000 38%,transparent 56%);mask-image:linear-gradient(to right,#000 38%,transparent 56%)}
+.obj__bag{position:absolute;z-index:3;left:27%;bottom:8.5svh;height:calc(100svh - var(--bar-h) - 7svh);transform:translate3d(calc(-50% + var(--d,0) * 4vw),0,0)}
+.obj__bagi{height:100%}
+.obj__bagi img{height:100%;width:auto;max-width:none;filter:drop-shadow(0 26px 24px rgb(0 0 0 / .5))}
+.obj__shadow{position:absolute;z-index:2;left:27%;bottom:calc(8.5svh - 1.6svh);width:min(34vw,34rem);height:5svh;translate:-50% 0;background:radial-gradient(closest-side,rgb(0 0 0 / .55),transparent);transform:translate3d(calc(var(--d,0) * 4vw),0,0)}
+.obj__label{position:absolute;z-index:4;left:55%;right:var(--sc-gutter);top:calc(50% + var(--bar-h) / 2);translate:0 -50%;max-width:33rem;transform:translate3d(calc(var(--d,0) * -3vw),0,0)}
+.obj__name{margin:0;font-family:var(--script);font-weight:400;font-size:clamp(3.4rem,6.4vw,6rem);line-height:1.02;color:var(--acc);letter-spacing:0}
+.obj__cap{margin:.6rem 0 0;font-weight:300;font-size:1.02rem;line-height:1.5;color:var(--sc-ink);max-width:30rem;text-wrap:pretty}
+.spec{margin:1.7rem 0 0}
+.spec>div{display:grid;grid-template-columns:5.6rem 1fr;gap:1rem;padding-block:.7rem;border-top:1px solid color-mix(in oklab,var(--sc-ink) 16%,transparent)}
+.spec>div:last-child{border-bottom:1px solid color-mix(in oklab,var(--sc-ink) 16%,transparent)}
+.spec dt{font-weight:500;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);padding-top:.22rem}
+.spec dd{margin:0;font-size:.92rem;line-height:1.52;color:var(--sc-ink);text-wrap:pretty}
+.fmts{margin-top:1.4rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem}
+
+/* format button */
+.f{position:relative;display:grid;gap:.1rem;text-align:left;padding:.65rem .8rem .6rem;border-radius:var(--sc-r-md);border:1px solid color-mix(in oklab,var(--sc-ink) 26%,transparent);background:color-mix(in oklab,var(--sc-ink) 6%,transparent);color:var(--sc-ink);line-height:1.2;
+  transition:transform 120ms var(--sc-ease-out),border-color 160ms var(--sc-ease-out),background 160ms var(--sc-ease-out)}
+.f__kg{font-weight:600;font-size:1.02rem}
+.f__pr{font-weight:400;font-size:.9rem;font-variant-numeric:tabular-nums}
+.f__tag{font-size:.64rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-top:.25rem;min-height:1em}
+.f__q{position:absolute;top:-.5rem;right:-.4rem;min-width:1.4rem;height:1.4rem;border-radius:999px;background:var(--acc);color:var(--sc-accent-ink);font-size:.74rem;font-weight:600;display:grid;place-items:center;padding-inline:.35rem}
+.f__q[hidden]{display:none}
+.f.is-on{border-color:var(--acc);background:color-mix(in oklab,var(--acc) 14%,transparent)}
+.f:active{transform:scale(.97)}
+.f:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+@media (hover:hover) and (pointer:fine){.f:hover{border-color:var(--acc);background:color-mix(in oklab,var(--acc) 12%,transparent)}}
+.f--ask{grid-column:1 / -1;grid-template-columns:auto 1fr;align-items:baseline;column-gap:.9rem}
+.f--ask .f__tag{display:none}
+.f--sm .f__kg{font-size:.92rem}
+
+/* euphoria seal */
+.obj__seal{position:absolute;z-index:3;left:27%;top:calc(50% + var(--bar-h) / 2);width:min(30rem,36vw);aspect-ratio:1;translate:-50% -50%;color:var(--acc);transform:translate3d(calc(var(--d,0) * 4vw),0,0)}
+.obj__seal svg{width:100%;height:100%;overflow:visible;transform:rotate(calc(var(--d,0) * 60deg))}
+.seal__ring{font-family:var(--sc-font-text);font-weight:500;font-size:13px;letter-spacing:.32em;fill:currentColor}
+.seal__n{font-family:var(--sc-font-text);font-weight:300;font-size:92px;fill:var(--sc-ink)}
+.seal__t{font-family:var(--sc-font-text);font-weight:400;font-size:13px;letter-spacing:.32em;text-transform:uppercase;fill:var(--sc-ink)}
+
+/* ------------------------------------------------------------- casa ---- */
+.casa{--sc-ink:#1D1410;--sc-ink-soft:#5A4A3D;--acc:#7F550F;--sc-canvas:#FEFEFE;position:relative;z-index:2;background:#FEFEFE;color:var(--sc-ink);padding-block:clamp(5rem,9vw,9rem)}
+.casa__wrap{max-width:84rem;margin-inline:auto;padding-inline:var(--sc-gutter)}
+.casa__row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2rem,5vw,5rem);align-items:center}
+.casa__row + .casa__row{margin-top:clamp(4rem,8vw,8rem);grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
+.casa h2{margin:0;font-weight:500;font-size:clamp(2.1rem,1.5rem + 2.6vw,3.6rem);line-height:1.06;letter-spacing:-.02em;text-wrap:balance}
+.casa h3{margin:0;font-weight:500;font-size:clamp(1.5rem,1.2rem + 1.2vw,2.2rem);line-height:1.12;letter-spacing:-.015em}
+.casa p{margin:1.1rem 0 0;color:var(--sc-ink-soft);max-width:34rem;text-wrap:pretty}
+.casa p.casa__lead{color:var(--sc-ink)}
+.casa figure{margin:0;background:#FEFEFE}
+.casa figure img{width:100%;height:auto;-webkit-mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent)}
+.casa figcaption{font-size:.8rem;color:var(--sc-ink-soft);margin-top:.6rem}
+.casa .f{border-color:rgb(29 20 16 / .3);background:rgb(29 20 16 / .04);color:#1D1410;--acc:#7F550F;--sc-accent-ink:#FEFEFE}
+.casa .f:focus-visible{outline-color:#7F550F}
+.casa .f__q{background:#7F550F;color:#FEFEFE}
+.casa .f.is-on{border-color:#7F550F;background:rgb(127 85 15 / .1)}
+@media (hover:hover) and (pointer:fine){.casa .f:hover{border-color:#7F550F;background:rgb(127 85 15 / .08)}}
+.casa :focus-visible{outline-color:#7F550F}
+.pouch{display:flex;gap:.6rem;margin-top:1.5rem;flex-wrap:wrap}
+.pouch .f{min-width:7.4rem}
+
+/* ------------------------------------------------------------ close ---- */
+.close{background:var(--sc-canvas);display:grid;align-content:center;padding:calc(var(--bar-h) + 1rem) var(--sc-gutter) 6rem}
+.close__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(2rem,6vw,6rem);align-items:center;max-width:76rem;width:100%;margin-inline:auto}
+.close h2{margin:0;font-weight:500;font-size:clamp(2.4rem,1.6rem + 3.4vw,4.4rem);line-height:1.02;letter-spacing:-.025em;text-wrap:balance}
+.close__p{margin:1.2rem 0 0;color:var(--sc-ink-soft);max-width:28rem;text-wrap:pretty}
+.close__p a{color:var(--sc-accent)}
+.plate{border-top:1px solid color-mix(in oklab,var(--sc-ink) 28%,transparent);border-bottom:1px solid color-mix(in oklab,var(--sc-ink) 28%,transparent);padding-block:1.2rem 1.4rem}
+.plate__h{margin:0 0 .4rem;font-weight:500;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sc-accent)}
+.foot{position:absolute;left:var(--sc-gutter);right:var(--sc-gutter);bottom:1.4rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.78rem;color:var(--sc-ink-soft)}
+.foot b{font-weight:600;letter-spacing:.2em;color:var(--sc-ink)}
+
+/* ----------------------------------------------------------- ledger ---- */
+.lg__lines{list-style:none;margin:0;padding:0}
+.lg__lines li{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:.8rem;padding-block:.6rem;border-bottom:1px solid color-mix(in oklab,var(--sc-ink) 12%,transparent)}
+.lg__n{font-size:.92rem;line-height:1.3}
+.lg__n em{font-style:normal;color:var(--sc-ink-soft);font-weight:300;display:block;font-size:.78rem}
+.lg__st{display:inline-flex;align-items:center;gap:.15rem}
+.lg__st button{width:2.2rem;height:2.2rem;border-radius:var(--sc-r-md);border:1px solid color-mix(in oklab,var(--sc-ink) 28%,transparent);background:transparent;color:inherit;font-size:1.05rem;line-height:1;display:grid;place-items:center;transition:transform 120ms var(--sc-ease-out),border-color 160ms var(--sc-ease-out)}
+.lg__st button:active{transform:scale(.94)}
+@media (hover:hover) and (pointer:fine){.lg__st button:hover{border-color:var(--sc-accent)}}
+.lg__st output{min-width:1.6rem;text-align:center;font-weight:500;font-variant-numeric:tabular-nums}
+.lg__p{font-variant-numeric:tabular-nums;font-size:.9rem;min-width:4.6rem;text-align:right;color:var(--sc-ink)}
+.lg__empty{margin:.4rem 0 0;color:var(--sc-ink-soft);font-size:.92rem;max-width:26rem}
+.lg__empty a{color:var(--sc-accent)}
+.gauge{position:relative;height:.5rem;border-radius:999px;background:color-mix(in oklab,var(--sc-ink) 16%,transparent);overflow:hidden;margin-top:1.1rem}
+.gauge i{position:absolute;inset:0;background:var(--sc-accent);transform-origin:0 50%;transform:scaleX(0);transition:transform 520ms var(--sc-ease-out)}
+.gauge__lbl{display:flex;justify-content:space-between;font-size:.7rem;color:var(--sc-ink-soft);margin-top:.35rem;letter-spacing:.04em}
+.lg__status{margin:.7rem 0 0;font-size:.88rem;min-height:2.2rem;display:flex;align-items:center;gap:.7rem;color:var(--sc-ink)}
+.stamp{display:none;border:2px solid var(--sc-accent);color:var(--sc-accent);font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .6rem;border-radius:6px;rotate:-4deg;white-space:nowrap}
+.lg.is-free .stamp{display:inline-block}
+.lg.is-stamp .stamp{animation:stamp 520ms var(--sc-ease-out)}
+@keyframes stamp{0%{opacity:0;transform:scale(1.5)}60%{opacity:1;transform:scale(.96)}100%{opacity:1;transform:scale(1)}}
+.lg__tot{display:flex;justify-content:space-between;align-items:baseline;margin:.9rem 0 0;font-size:.85rem;color:var(--sc-ink-soft)}
+.lg__tot strong{font-size:1.5rem;font-weight:500;color:var(--sc-ink);font-variant-numeric:tabular-nums}
+.lg__note{margin:.2rem 0 0;font-size:.78rem;color:var(--sc-ink-soft);min-height:1.2em}
+.cta{display:flex;justify-content:center;align-items:center;gap:.6rem;margin-top:1.1rem;min-height:3.1rem;padding:.75rem 1.2rem;border-radius:var(--sc-r-md);background:var(--sc-accent);color:var(--sc-accent-ink);font-weight:600;font-size:.95rem;text-decoration:none;line-height:1.2;white-space:nowrap;transition:transform 120ms var(--sc-ease-out),background 160ms var(--sc-ease-out)}
+.cta:active{transform:scale(.97)}
+.cta:focus-visible{outline:2px solid var(--sc-ink);outline-offset:3px}
+@media (hover:hover) and (pointer:fine){.cta:hover{background:color-mix(in oklab,var(--sc-accent) 86%,white)}}
+.drop{position:fixed;z-index:70;top:calc(var(--bar-h) - .2rem);right:var(--sc-gutter);width:min(24rem,calc(100vw - 2rem));background:#1B1310;color:var(--sc-ink);border:1px solid color-mix(in oklab,var(--sc-ink) 20%,transparent);border-radius:16px;padding:1.1rem 1.2rem 1.3rem;box-shadow:var(--sc-e3),var(--sc-edge);max-height:calc(100svh - var(--bar-h) - 1rem);overflow:auto}
+.drop[hidden]{display:none}
+.drop__h{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem}
+.drop__h h2{margin:0;font-weight:500;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sc-accent)}
+.drop__x{background:transparent;border:0;color:var(--sc-ink-soft);font-size:1.3rem;line-height:1;width:2.2rem;height:2.2rem;border-radius:var(--sc-r-md)}
+@media (hover:hover) and (pointer:fine){.drop__x:hover{color:var(--sc-ink)}}
+
+/* ----------------------------------------------------------- mobile ---- */
+@media (max-width:860px){
+  :root{--bar-h:3.6rem}
+  .bar{grid-template-columns:auto 1fr auto;gap:.8rem}
+  .mark{font-size:.82rem}.mark small{display:none}
+  .idx{gap:.15rem}
+  .idx a{padding:.6rem .5rem}
+  .idx a span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .idx a i{width:.95rem;height:.95rem}
+  .idx a[aria-current="true"]{border-bottom-color:currentColor}
+  .tbtn{padding:.5rem .7rem}
+  .obj__ground{background:radial-gradient(80% 50% at 50% 36%,var(--g2) 0%,transparent 76%),linear-gradient(to bottom,transparent 60%,rgb(0 0 0 / .32))}
+  .obj__ground::after{top:calc(var(--bar-h) + 40svh)}
+  .obj__ghost{top:calc(var(--bar-h) + 1svh);font-size:clamp(6rem,38vw,12rem);left:-2%}
+  .obj__bag{left:50%;bottom:auto;top:calc(var(--bar-h) + 1svh);height:39svh}
+  .obj__shadow{left:50%;bottom:auto;top:calc(var(--bar-h) + 39.2svh);width:60vw;height:3svh}
+  .obj__label{left:var(--sc-gutter);right:var(--sc-gutter);top:calc(var(--bar-h) + 42.5svh);translate:none;max-width:none;transform:none}
+  .obj__name{font-size:clamp(2.6rem,12vw,3.6rem)}
+  .obj__cap{font-size:.9rem;margin-top:.2rem}
+  .spec{margin-top:.8rem}
+  .spec>div{padding-block:.42rem;grid-template-columns:4.6rem 1fr;gap:.6rem}
+  .spec dd{font-size:.82rem;line-height:1.4}
+  .spec__para{display:none}
+  .fmts{margin-top:.9rem;gap:.45rem}
+  .f{padding:.5rem .55rem .45rem}
+  .f__kg{font-size:.9rem}.f__pr{font-size:.78rem}
+  .f__tag{font-size:.56rem;letter-spacing:.06em}
+  .f--ask{grid-template-columns:1fr}
+  .obj__seal{left:50%;top:calc(var(--bar-h) + 20svh);width:min(56vw,19rem);translate:-50% -50%}
+  .casa__row,.casa__row + .casa__row{grid-template-columns:1fr}
+  .casa__row + .casa__row figure{order:-1}
+  .close{padding-bottom:5rem}
+  .close__grid{grid-template-columns:1fr;gap:1.4rem}
+  .close__p{display:none}
+  .close h2{font-size:clamp(2rem,9vw,2.6rem)}
+  .drop{right:.5rem;left:.5rem;width:auto}
+  .foot{font-size:.7rem;bottom:1rem}
+}
+@media (max-width:860px) and (max-height:700px){
+  .obj__cap{display:none}
+  .spec>div:nth-child(2) dd{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+}
+@media (max-width:520px){
+  .gallery .obj__label .f__tag{white-space:nowrap}
+}
+@media (prefers-reduced-motion:reduce){
+  .obj__ghost,.obj__bag,.obj__shadow,.obj__label,.obj__seal,.obj__seal svg{transform:none !important}
+  .obj__bag{transform:translate3d(-50%,0,0) !important}
+  .obj__shadow{transform:none !important}
+  .lg.is-stamp .stamp,.tbtn.bump{animation:none}
+  .gauge i{transition:none}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#colecao">Saltar para a coleção</a>
+<span data-sc-progress aria-hidden="true"></span>
+<div class="sc-grain" aria-hidden="true"></div>
+
+<header class="bar" id="bar">
+  <h1 class="mark"><a href="#top" aria-label="Fénix Cafés, início">FÉNIX <small>CAFÉS</small></a></h1>
+  <nav aria-label="Os cafés">
+    <ul class="idx">
+<li><a href="#classic" data-go="0"><i style="--sw:#8B2E24" aria-hidden="true"></i><span>Classic</span></a></li>
+<li><a href="#speciale" data-go="1"><i style="--sw:#0F4A3A" aria-hidden="true"></i><span>Speciale</span></a></li>
+<li><a href="#gold" data-go="2"><i style="--sw:#C8A24C" aria-hidden="true"></i><span>Gold</span></a></li>
+<li><a href="#supreme" data-go="3"><i style="--sw:#14275C" aria-hidden="true"></i><span>Supreme</span></a></li>
+<li><a href="#euphoria" data-go="4"><i style="--sw:#0B0B0C" aria-hidden="true"></i><span>Euphoria</span></a></li>
+    </ul>
+  </nav>
+  <button class="tbtn" type="button" id="tbtn" aria-expanded="false" aria-controls="drop">
+    <span class="tbtn__t">Talão</span><span class="tbtn__n" id="tcount" hidden>0</span>
+    <span class="sr-only" id="tlive" aria-live="polite"></span>
+  </button>
+</header>
+
+<div class="drop" id="drop" role="dialog" aria-label="Talão de encomenda" hidden>
+  <div class="drop__h"><h2>O seu talão</h2><button class="drop__x" type="button" id="dclose" aria-label="Fechar talão">×</button></div>
+  <div data-ledger="drop"></div>
+</div>
+
+<main id="top">
+
+  <!-- OBJETOS: a coleção. Cinco salas lado a lado, o scroll vertical caminha na horizontal. -->
+  <section id="colecao" class="gallery" data-sc-act="pan" data-sc-span="6.2" aria-label="Coleção Fénix Cafés">
+    <div data-sc-stage>
+      <div data-sc-pan="0">
+
+      <article class="obj obj--classic" id="classic" data-i="0" aria-labelledby="n-classic">
+        <div class="obj__ground" aria-hidden="true"></div>
+        <div class="obj__ghost" aria-hidden="true">Classic</div>
+        <div class="obj__bag"><div class="obj__bagi" data-sc-tilt="5"><img src="assets/bag-classic.webp" width="602" height="1300" alt="Embalagem Fénix Cafés Classic, 1 kg, vermelho terracota com detalhes dourados" decoding="async" fetchpriority="high"></div></div>
+        <div class="obj__shadow" aria-hidden="true"></div>
+        <div class="obj__label">
+          <h2 class="obj__name" id="n-classic">Classic</h2>
+          <p class="obj__cap">Um espresso que não passa despercebido.</p>
+          <dl class="spec">
+            <div><dt>Origens</dt><dd>Brasil, Vietname, Indonésia</dd></div>
+            <div><dt>Perfil</dt><dd>Lote robusto e encorpado, de presença firme, intensidade expressiva e final persistente.</dd></div>
+            <div class="spec__para"><dt>Para</dt><dd>Quem prefere um espresso forte, com corpo e personalidade.</dd></div>
+          </dl>
+          <div class="fmts" role="group" aria-label="Formatos e preços de Classic">
+            <button class="f" type="button" data-add="classic|1" aria-label="Juntar ao talão: Classic 1 kg, 17,50 euros"><span class="f__kg">1 kg</span><span class="f__pr">17,50 €</span><span class="f__tag f__tag--none"></span><span class="f__q" data-q hidden></span></button>
+<button class="f" type="button" data-add="classic|3" aria-label="Juntar ao talão: Classic 3 kg, 50,10 euros"><span class="f__kg">3 kg</span><span class="f__pr">50,10 €</span><span class="f__tag">Portes grátis</span><span class="f__q" data-q hidden></span></button>
+<button class="f" type="button" data-add="classic|5" aria-label="Juntar ao talão: Classic 5 kg, 79,50 euros"><span class="f__kg">5 kg</span><span class="f__pr">79,50 €</span><span class="f__tag">Portes grátis</span><span class="f__q" data-q hidden></span></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="obj obj--speciale" id="speciale" data-i="1" aria-labelledby="n-speciale">
+        <div class="obj__ground" aria-hidden="true"></div>
+        <div class="obj__ghost" aria-hidden="true">Speciale</div>
+        <div class="obj__bag"><div class="obj__bagi" data-sc-tilt="5"><img src="assets/bag-speciale.webp" width="633" height="1300" alt="Embalagem Fénix Cafés Speciale, 1 kg, verde escuro com detalhes dourados" decoding="async" loading="lazy"></div></div>
+        <div class="obj__shadow" aria-hidden="true"></div>
+        <div class="obj__label">
+          <h2 class="obj__name" id="n-speciale">Speciale</h2>
+          <p class="obj__cap">A elegância de um espresso que sabe ficar na memória.</p>
+          <dl class="spec">
+            <div><dt>Origens</dt><dd>Brasil, Uganda, Indonésia, Vietname</dd></div>
+            <div><dt>Perfil</dt><dd>Equilibrado e generoso, com creme abundante, textura aveludada e uma evocação subtil de avelã.</dd></div>
+            <div class="spec__para"><dt>Para</dt><dd>Quem valoriza o creme, a delicadeza da textura e o equilíbrio.</dd></div>
+          </dl>
+          <div class="fmts" role="group" aria-label="Formatos e preços de Speciale">
+            <button class="f" type="button" data-add="speciale|1" aria-label="Juntar ao talão: Speciale 1 kg, 18,15 euros"><span class="f__kg">1 kg</span><span class="f__pr">18,15 €</span><span class="f__tag f__tag--none"></span><span class="f__q" data-q hidden></span></button>
+<button class="f" type="button" data-add="speciale|3" aria-label="Juntar ao talão: Speciale 3 kg, 51,90 euros"><span class="f__kg">3 kg</span><span class="f__pr">51,90 €</span><span class="f__tag">Portes grátis</span><span class="f__q" data-q hidden></span></button>
+<button class="f" type="button" data-add="speciale|5" aria-label="Juntar ao talão: Speciale 5 kg, 84,50 euros"><span class="f__kg">5 kg</span><span class="f__pr">84,50 €</span><span class="f__tag">Portes grátis</span><span class="f__q" data-q hidden></span></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="obj obj--gold" id="gold" data-i="2" aria-labelledby="n-gold">
+        <div class="obj__ground" aria-hidden="true"></div>
+        <div class="obj__ghost" aria-hidden="true">Gold</div>
+        <div class="obj__bag"><div class="obj__bagi" data-sc-tilt="5"><img src="assets/bag-gold.webp" width="632" height="1300" alt="Embalagem Fénix Cafés Gold, 1 kg, dourada com letras brancas" decoding="async" loading="lazy"></div></div>
+        <div class="obj__shadow" aria-hidden="true"></div>
+        <div class="obj__label">
+          <h2 class="obj__name" id="n-gold">Gold</h2>
+          <p class="obj__cap">Um café pensado para elevar o quotidiano.</p>
+          <dl class="spec">
+            <div><dt>Origens</dt><dd>Colômbia, Vietname, Indonésia, Uganda</dd></div>
+            <div><dt>Perfil</dt><dd>Refinado e elegante: intensidade acompanhada de equilíbrio. Uma proposta gourmet.</dd></div>
+            <div class="spec__para"><dt>Para</dt><dd>Quem exige mais de cada espresso.</dd></div>
+          </dl>
+          <div class="fmts" role="group" aria-label="Formatos e preços de Gold">
+            <button class="f" type="button" data-add="gold|1" aria-label="Juntar ao talão: Gold 1 kg, 20,90 euros"><span class="f__kg">1 kg</span><span class="f__pr">20,90 €</span><span class="f__tag f__tag--none"></span><span class="f__q" data-q hidden></span></button>
+<button class="f" type="button" data-add="gold|3" aria-label="Juntar ao talão: Gold 3 kg, 58,80 euros"><span class="f__kg">3 kg</span><span class="f__pr">58,80 €</span><span class="f__tag">Portes grátis</span><span class="f__q" data-q hidden></span></button>
+<button class="f" type="button" data-add="gold|5" aria-label="Juntar ao talão: Gold 5 kg, 94,50 euros"><span class="f__kg">5 kg</span><span class="f__pr">94,50 €</span><span class="f__tag">Portes grátis</span><span class="f__q" data-q hidden></span></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="obj obj--supreme" id="supreme" data-i="3" aria-labelledby="n-supreme">
+        <div class="obj__ground" aria-hidden="true"></div>
+        <div class="obj__ghost" aria-hidden="true">Supreme</div>
+        <div class="obj__bag"><div class="obj__bagi" data-sc-tilt="5"><img src="assets/bag-supreme.webp" width="647" height="1300" alt="Embalagem Fénix Cafés Supreme, 1 kg, azul marinho com detalhes dourados" decoding="async" loading="lazy"></div></div>
+        <div class="obj__shadow" aria-hidden="true"></div>
+        <div class="obj__label">
+          <h2 class="obj__name" id="n-supreme">Supreme</h2>
+          <p class="obj__cap">Seis origens. Uma identidade verdadeiramente singular.</p>
+          <dl class="spec">
+            <div><dt>Origens</dt><dd>Colômbia, Honduras, Brasil, Indonésia, Vietname, Uganda</dd></div>
+            <div><dt>Perfil</dt><dd>Suave e intenso ao mesmo tempo, com corpo presente e uma progressão de sabor que convida à descoberta.</dd></div>
+            <div class="spec__para"><dt>Para</dt><dd>Os paladares mais exigentes.</dd></div>
+          </dl>
+          <div class="fmts" role="group" aria-label="Formatos e preços de Supreme">
+            <button class="f f--ask" type="button" data-add="supreme|tbc" aria-label="Juntar ao talão: Supreme, formatos e preços sob consulta"><span class="f__kg">Sob consulta</span><span class="f__pr">Formatos e preços</span><span class="f__tag f__tag--none"></span><span class="f__q" data-q hidden></span></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="obj obj--euphoria" id="euphoria" data-i="4" aria-labelledby="n-euphoria">
+        <div class="obj__ground" aria-hidden="true"></div>
+        <div class="obj__ghost" aria-hidden="true">Euphoria</div>
+        <div class="obj__seal" aria-hidden="true">
+          <svg viewBox="0 0 300 300" focusable="false">
+            <defs><path id="sealpath" d="M150,150 m-118,0 a118,118 0 1,1 236,0 a118,118 0 1,1 -236,0"/></defs>
+            <circle cx="150" cy="150" r="146" fill="none" stroke="currentColor" stroke-width="1"/>
+            <circle cx="150" cy="150" r="92" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/>
+            <text class="seal__ring"><textPath href="#sealpath" startOffset="0">ORIGENS SECRETAS · ORIGENS SECRETAS · ORIGENS SECRETAS · </textPath></text>
+            <text class="seal__n" x="150" y="168" text-anchor="middle">3</text>
+            <text class="seal__t" x="150" y="196" text-anchor="middle">origens</text>
+          </svg>
+        </div>
+        <div class="obj__label">
+          <h2 class="obj__name" id="n-euphoria">Euphoria</h2>
+          <p class="obj__cap">Não é apenas um café. É um estado de espírito.</p>
+          <dl class="spec">
+            <div><dt>Origens</dt><dd>Três origens, segredo da casa</dd></div>
+            <div><dt>Perfil</dt><dd>Uma proposta ousada, emocional e distinta.</dd></div>
+            <div class="spec__para"><dt>Para</dt><dd>Inconformistas e espíritos livres.</dd></div>
+          </dl>
+          <div class="fmts" role="group" aria-label="Formatos e preços de Euphoria">
+            <button class="f f--ask" type="button" data-add="euphoria|tbc" aria-label="Juntar ao talão: Euphoria, formatos e preços sob consulta"><span class="f__kg">Sob consulta</span><span class="f__pr">Formatos e preços</span><span class="f__tag f__tag--none"></span><span class="f__q" data-q hidden></span></button>
+          </div>
+        </div>
+      </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASA: uma sala clara, hard cut. -->
+  <section class="casa" id="casa" data-sc-act="flow">
+    <div class="casa__wrap">
+      <div class="casa__row">
+        <div data-sc-in data-sc-stagger="70">
+          <h2>Da nossa família para a sua.</h2>
+          <p class="casa__lead">Fundada em 2014, a SPACQ Torrefação de Cafés nasceu de um projeto familiar português, construído com trabalho, conhecimento e uma paixão genuína pelo café.</p>
+          <p>A Fénix Cafés é a marca que nasce desse percurso: cada blend é uma interpretação dessa herança. Cinco cafés. Cinco formas de sentir.</p>
+        </div>
+        <figure data-sc-reveal="left" data-sc-reveal-at="0.14 0.5">
+          <img src="assets/lineup-1kg.webp" width="1486" height="803" alt="Os quatro blends de 1 kg lado a lado: Classic, Speciale, Gold e Supreme" loading="lazy" decoding="async">
+        </figure>
+      </div>
+      <div class="casa__row">
+        <figure data-sc-in>
+          <img src="assets/pouches-250g.webp" width="1526" height="808" alt="Saquetas de 250 g Speciale, Gold e Supreme" loading="lazy" decoding="async">
+        </figure>
+        <div data-sc-in data-sc-stagger="70">
+          <h3>Também em 250 g.</h3>
+          <p>Speciale, Gold e Supreme em saqueta. Preço sob consulta.</p>
+          <div class="pouch" role="group" aria-label="Saquetas de 250 g">
+<button class="f f--sm" type="button" data-add="speciale|0.25" aria-label="Juntar ao talão: Speciale 250 g, preço sob consulta"><span class="f__kg">Speciale</span><span class="f__pr">250 g</span><span class="f__q" data-q hidden></span></button>
+<button class="f f--sm" type="button" data-add="gold|0.25" aria-label="Juntar ao talão: Gold 250 g, preço sob consulta"><span class="f__kg">Gold</span><span class="f__pr">250 g</span><span class="f__q" data-q hidden></span></button>
+<button class="f f--sm" type="button" data-add="supreme|0.25" aria-label="Juntar ao talão: Supreme 250 g, preço sob consulta"><span class="f__kg">Supreme</span><span class="f__pr">250 g</span><span class="f__q" data-q hidden></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENCOMENDA: a placa de inquérito, escrita como um rótulo. -->
+  <section id="encomenda" data-sc-act="pin" data-sc-span="1.25">
+    <div data-sc-stage class="close">
+      <div class="close__grid">
+        <div data-sc-cue="0 1 0 0">
+          <h2>O seu talão.</h2>
+          <p class="close__p">Escolha os formatos na coleção. O pedido segue para o WhatsApp já escrito, com as quantidades e os portes. <a href="#classic" data-go="0">Voltar à coleção</a></p>
+        </div>
+        <div class="plate" data-sc-cue="0 1 0 0">
+          <h3 class="plate__h">Encomenda</h3>
+          <div data-ledger="close"></div>
+        </div>
+      </div>
+      <footer class="foot">
+        <span><b>FÉNIX CAFÉS</b> &nbsp;SPACQ Torrefação de Cafés, Portugal</span>
+        <span>Envios para Portugal Continental. Portes grátis a partir de 3 kg.</span>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<script src="scrollcraft.js"></script>
+<script>ScrollCraft.mount(document.body);</script>
+<script>
+(function () {
+  'use strict';
+  /* ------------------------------------------------------------------
+     CONFIGURAÇÃO. Preencher com o número de WhatsApp da loja, só dígitos
+     com indicativo (ex.: "351912345678"). Vazio abre o WhatsApp para a
+     pessoa escolher o contacto, com a mensagem já escrita.
+  ------------------------------------------------------------------ */
+  var WA_NUMBER = '';
+  var FREE_FROM_KG = 3;
+  var BLENDS = {"classic": {"name": "Classic", "prices": {"1": 17.5, "3": 50.1, "5": 79.5}}, "speciale": {"name": "Speciale", "prices": {"1": 18.15, "3": 51.9, "5": 84.5}}, "gold": {"name": "Gold", "prices": {"1": 20.9, "3": 58.8, "5": 94.5}}, "supreme": {"name": "Supreme", "prices": {}}, "euphoria": {"name": "Euphoria", "prices": {}}};
+
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* ------------------------------ estado do talão ------------------- */
+  var items = {}; // chave "id|kg" -> {id, kg (number|null), qty}
+  try { var saved = JSON.parse(localStorage.getItem('fenix-talao') || '{}'); if (saved && typeof saved === 'object') {
+    Object.keys(saved).forEach(function (k) { var v = saved[k]; if (v && BLENDS[v.id] && v.qty > 0) items[k] = { id: v.id, kg: v.kg, qty: Math.min(99, v.qty | 0) }; }); } } catch (e) {}
+  function persist() { try { localStorage.setItem('fenix-talao', JSON.stringify(items)); } catch (e) {} }
+
+  function eur(v) { return v.toFixed(2).replace('.', ',') + ' €'; }
+  function fmtKg(x) { return (Math.round(x * 100) / 100).toString().replace('.', ',') + ' kg'; }
+  function priceOf(it) { var b = BLENDS[it.id]; if (it.kg == null) return null; var p = b.prices[String(it.kg)]; return typeof p === 'number' ? p : null; }
+  function kgLabel(it) { return it.kg == null ? 'formato a confirmar' : (it.kg < 1 ? Math.round(it.kg * 1000) + ' g' : fmtKg(it.kg)); }
+
+  function totals() {
+    var w = 0, cents = 0, n = 0, unpriced = 0;
+    Object.keys(items).forEach(function (k) {
+      var it = items[k]; n += it.qty;
+      if (it.kg != null) w += it.kg * it.qty;
+      var p = priceOf(it);
+      if (p == null) unpriced += it.qty; else cents += Math.round(p * 100) * it.qty;
+    });
+    return { w: w, total: cents / 100, n: n, unpriced: unpriced };
+  }
+
+  function message() {
+    var t = totals(), keys = Object.keys(items);
+    if (!keys.length) return 'Olá, gostaria de informações sobre os cafés Fénix.';
+    var lines = keys.map(function (k) {
+      var it = items[k], p = priceOf(it), b = BLENDS[it.id];
+      return '- ' + it.qty + ' x ' + b.name + ' ' + kgLabel(it) + (p != null ? ' (' + eur(p) + ' cada)' : ' (preço a confirmar)');
+    });
+    var out = 'Olá, gostaria de encomendar:\n' + lines.join('\n');
+    if (t.total > 0) out += '\nTotal dos cafés com preço: ' + eur(t.total);
+    if (t.unpriced) out += '\n(Há ' + t.unpriced + (t.unpriced === 1 ? ' linha' : ' linhas') + ' com preço a confirmar.)';
+    out += '\nPortes: ' + (t.w >= FREE_FROM_KG ? 'grátis (pedido com ' + fmtKg(t.w) + ')' : 'a confirmar (' + fmtKg(t.w) + ' no pedido)');
+    out += '\nEnvio para Portugal Continental.';
+    return out;
+  }
+  function waHref() {
+    var base = WA_NUMBER ? 'https://wa.me/' + WA_NUMBER.replace(/\D/g, '') : 'https://wa.me/';
+    return base + '?text=' + encodeURIComponent(message());
+  }
+
+  /* ------------------------------ render do talão -------------------- */
+  var mounts = $$('[data-ledger]').map(function (el) {
+    el.innerHTML =
+      '<div class="lg">' +
+        '<div data-r="body"></div>' +
+        '<div class="gauge" role="progressbar" aria-label="Peso do pedido até 3 kg" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0"><i></i></div>' +
+        '<div class="gauge__lbl"><span>0 kg</span><span>3 kg</span></div>' +
+        '<p class="lg__status"><span class="stamp">Portes grátis</span><span data-r="status"></span></p>' +
+        '<p class="lg__tot"><span>Total dos cafés</span><strong data-r="total">0,00 €</strong></p>' +
+        '<p class="lg__note" data-r="note"></p>' +
+        '<a class="cta" data-r="cta" href="#" target="_blank" rel="noopener">Encomendar por WhatsApp</a>' +
+      '</div>';
+    return { root: $('.lg', el), body: $('[data-r=body]', el), gauge: $('.gauge', el), fill: $('.gauge i', el), status: $('[data-r=status]', el), total: $('[data-r=total]', el), note: $('[data-r=note]', el), cta: $('[data-r=cta]', el) };
+  });
+
+  var wasFree = false;
+  function render(opts) {
+    opts = opts || {};
+    var t = totals(), keys = Object.keys(items), free = t.w >= FREE_FROM_KG;
+    var linesHTML = keys.length
+      ? '<ul class="lg__lines">' + keys.map(function (k) {
+          var it = items[k], b = BLENDS[it.id], p = priceOf(it);
+          return '<li><span class="lg__n">' + b.name + '<em>' + kgLabel(it) + '</em></span>' +
+            '<span class="lg__st"><button type="button" data-step="-1" data-k="' + k + '" aria-label="Tirar um: ' + b.name + ' ' + kgLabel(it) + '">&minus;</button><output aria-label="Quantidade">' + it.qty + '</output><button type="button" data-step="1" data-k="' + k + '" aria-label="Juntar um: ' + b.name + ' ' + kgLabel(it) + '">+</button></span>' +
+            '<span class="lg__p">' + (p != null ? eur(p * it.qty) : 'a confirmar') + '</span></li>';
+        }).join('') + '</ul>'
+      : '<p class="lg__empty">Ainda vazio. Escolha um formato em qualquer café da coleção. <a href="#classic" data-go="0">Ver a coleção</a></p>';
+    var status = free
+      ? 'Pedido com ' + fmtKg(t.w) + '.'
+      : (t.w > 0 ? 'Faltam ' + fmtKg(FREE_FROM_KG - t.w) + ' para portes grátis.' : 'Portes grátis a partir de 3 kg.');
+    var note = t.unpriced ? '+ ' + t.unpriced + (t.unpriced === 1 ? ' linha' : ' linhas') + ' com preço a confirmar' : '';
+    var href = waHref();
+    var pct = Math.min(1, t.w / FREE_FROM_KG);
+    var stampNow = free && !wasFree && opts.animate;
+    mounts.forEach(function (m) {
+      m.body.innerHTML = linesHTML;
+      m.fill.style.transform = 'scaleX(' + pct.toFixed(3) + ')';
+      m.gauge.setAttribute('aria-valuenow', Math.min(3, t.w).toFixed(2));
+      m.status.textContent = status;
+      m.total.textContent = eur(t.total);
+      m.note.textContent = note;
+      m.cta.href = href;
+      m.root.classList.toggle('is-free', free);
+      if (stampNow) { m.root.classList.remove('is-stamp'); void m.root.offsetWidth; m.root.classList.add('is-stamp'); }
+    });
+    wasFree = free;
+
+    // botões de formato e contador da barra
+    $$('[data-add]').forEach(function (btn) {
+      var key = btn.getAttribute('data-add'), q = items[key] ? items[key].qty : 0, bq = $('[data-q]', btn);
+      btn.classList.toggle('is-on', q > 0);
+      if (bq) { bq.hidden = q === 0; bq.textContent = q; }
+    });
+    var cnt = $('#tcount'); cnt.hidden = t.n === 0; cnt.textContent = t.n;
+  }
+
+  function add(key, delta) {
+    var parts = key.split('|'), id = parts[0], kg = parts[1] === 'tbc' ? null : parseFloat(parts[1]);
+    if (!BLENDS[id]) return;
+    var cur = items[key] || { id: id, kg: kg, qty: 0 };
+    cur.qty = Math.max(0, Math.min(99, cur.qty + delta));
+    if (cur.qty === 0) delete items[key]; else items[key] = cur;
+    persist(); render({ animate: delta > 0 });
+    var live = $('#tlive'); if (live) { var t = totals(); live.textContent = 'Talão: ' + t.n + (t.n === 1 ? ' item' : ' itens') + ', ' + fmtKg(t.w) + '.'; }
+  }
+
+  /* ------------------------------ talão em gaveta -------------------- */
+  var drop = $('#drop'), tbtn = $('#tbtn'), firstAdd = true;
+  function openDrop(v) {
+    drop.hidden = !v; tbtn.setAttribute('aria-expanded', String(v));
+    if (v) { var x = $('#dclose'); /* foco só em abertura explícita */ }
+  }
+  tbtn.addEventListener('click', function () { openDrop(drop.hidden); });
+  $('#dclose').addEventListener('click', function () { openDrop(false); tbtn.focus(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !drop.hidden) { openDrop(false); tbtn.focus(); } });
+  document.addEventListener('click', function (e) {
+    if (drop.hidden) return;
+    if (drop.contains(e.target) || tbtn.contains(e.target) || e.target.closest('[data-add]')) return;
+    openDrop(false);
+  });
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-add]');
+    if (a) {
+      add(a.getAttribute('data-add'), 1);
+      tbtn.classList.remove('bump'); void tbtn.offsetWidth; tbtn.classList.add('bump');
+      if (firstAdd && innerWidth > 860 && !reduce.matches) { firstAdd = false; openDrop(true); }
+      return;
+    }
+    var s = e.target.closest('[data-step]');
+    if (s) { add(s.getAttribute('data-k'), parseInt(s.getAttribute('data-step'), 10)); return; }
+    var g = e.target.closest('[data-go]');
+    if (g) { e.preventDefault(); goTo(parseInt(g.getAttribute('data-go'), 10)); }
+  });
+
+  /* ------------------------------ galeria: índice e profundidade ----- */
+  var act = $('#colecao'), rail = $('[data-sc-pan]', act), panels = $$('.obj', rail), idxLinks = $$('.idx a'), N = panels.length;
+  var span = parseFloat(act.getAttribute('data-sc-span')) || 6;
+
+  function goTo(i) {
+    i = Math.max(0, Math.min(N - 1, i));
+    if (reduce.matches) {
+      var stage = $('[data-sc-stage]', act);
+      var top0 = act.getBoundingClientRect().top + scrollY;
+      if (scrollY < top0 - 2 || scrollY > top0 + 2) scrollTo({ top: top0, behavior: 'instant' });
+      stage.scrollTo({ left: i * innerWidth, behavior: 'smooth' });
+      return;
+    }
+    var top = act.getBoundingClientRect().top + scrollY;
+    var y = top + (i / (N - 1)) * (span - 1) * innerHeight;
+    scrollTo({ top: y, behavior: 'smooth' });
+  }
+
+  function depth() {
+    var vw = innerWidth, best = 9, bi = 0;
+    panels.forEach(function (p, i) {
+      var r = p.getBoundingClientRect();
+      var d = ((r.left + r.width / 2) - vw / 2) / vw;
+      d = Math.max(-1.3, Math.min(1.3, d));
+      if (reduce.matches) d = 0;
+      p.style.setProperty('--d', d.toFixed(4));
+      if (Math.abs(d) < best) { best = Math.abs(d); bi = i; }
+    });
+    var onGallery = act.getBoundingClientRect().top < innerHeight * 0.5 && act.getBoundingClientRect().bottom > innerHeight * 0.5;
+    idxLinks.forEach(function (a, i) { a.setAttribute('aria-current', onGallery && i === bi ? 'true' : 'false'); });
+  }
+  var tick = false;
+  function onScroll() { if (tick) return; tick = true; requestAnimationFrame(function () { tick = false; depth(); }); }
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(depth);
+
+  // Foco por teclado numa sala fora do ecrã: levar essa sala para a vista.
+  rail.addEventListener('focusin', function (e) {
+    var p = e.target.closest('.obj'); if (!p) return;
+    var r = p.getBoundingClientRect();
+    if (r.left < -4 || r.right > innerWidth + 4) {
+      if (reduce.matches) return;
+      var top = act.getBoundingClientRect().top + scrollY;
+      scrollTo({ top: top + (panels.indexOf(p) / (N - 1)) * (span - 1) * innerHeight, behavior: 'instant' });
+    }
+  });
+
+  // A barra passa a escura sobre a sala clara.
+  var bar = $('#bar'), casa = $('#casa');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) { en.forEach(function (x) { bar.classList.toggle('on-light', x.isIntersecting); }); },
+      { rootMargin: '0px 0px -94% 0px' }).observe(casa);
+  }
+
+  render();
+  depth();
+  if (location.hash && BLENDS[location.hash.slice(1)]) {
+    var hi = panels.findIndex(function (p) { return p.id === location.hash.slice(1); });
+    if (hi > 0) setTimeout(function () { goTo(hi); }, 60);
+  }
+})();
+</script>
+</body>
+</html>
